@@ -2,27 +2,7 @@ from litestar import Litestar, post, Request
 from litestar.openapi.config import OpenAPIConfig
 from litestar.openapi.plugins import RedocRenderPlugin
 from pydantic import BaseModel
-import os
-from typing import Protocol
-
-
-class Model(Protocol):
-    async def __call__(self, system_prompt: str, user_prompt: str) -> str: ...
-
-
-model: Model
-
-runtime = os.environ.get("LLM_RUNTIME", "llama_cpp")
-if runtime == "llama_cpp":
-    from lala.llamacpp import model as llama_cpp_model
-
-    model = llama_cpp_model
-elif runtime == "vllm":
-    from lala.vllms import model as vllm_model
-
-    model = vllm_model
-else:
-    raise ValueError(f"Invalid runtime: {runtime}")
+from lala.llamacpp import model
 
 
 class ChatRequest(BaseModel):
