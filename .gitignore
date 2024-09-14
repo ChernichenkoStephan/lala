@@ -13,3 +13,5 @@ wheels/
 local
 .env
 .DS_Store
+.env.plain
+.env.docker
