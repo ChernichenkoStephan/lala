@@ -1,0 +1,17 @@
+name: lala
+
+services:
+  lala:
+    container_name: lala
+    image: un000nu/${IMAGE_NAME}
+    platform: linux/amd64
+    env_file:
+      - .env.docker
+    volumes:
+      - ./data:/app/data
+      - ../local:/app/local
+    stop_signal: SIGINT
+    stop_grace_period: 15s
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT}:${APP_PORT}"

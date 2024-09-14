@@ -1,0 +1,18 @@
+services:
+  lala-cpu:
+    image: un000nu/lala-cpu
+    platform: linux/amd64
+    env_file:
+      - ./.env.docker
+    build:
+      context: ..
+      dockerfile: ./deployments/Dockerfile.cpu
+
+  lala-gpu:
+    image: un000nu/lala-gpu
+    platform: linux/amd64
+    env_file:
+      - ./.env.docker
+    build:
+      context: ..
+      dockerfile: ./deployments/Dockerfile.gpu

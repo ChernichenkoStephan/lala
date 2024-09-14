@@ -14,6 +14,24 @@ help:
 r: l
 	rye run python -m uvicorn --app-dir ./src/lala lala.main:app --reload
 
+u: l
+	cd deployments && docker compose -f docker-compose.local.yaml up ${S}
+
+ud: l
+	cd deployments && docker compose -f docker-compose.local.yaml up -d ${S}
+
+logs: 
+	cd deployments && docker compose -f docker-compose.local.yaml logs -f ${S}
+
+down: 
+	cd deployments && docker compose -f docker-compose.local.yaml down ${S}
+
+b: l
+	cd deployments && docker compose -f docker-compose.build.yaml build ${S}
+
+p: l
+	cd deployments && docker compose -f docker-compose.build.yaml push ${S}
+
 # Bench
 
 bl:
